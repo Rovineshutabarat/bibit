@@ -1,7 +1,7 @@
 <!-- resources/views/admin/dashboard.blade.php -->
 @extends('layouts.adminpage')
 
-@section('title', 'Dashboard - AgroMart adminpage')
+@section('title', 'Dashboard - Category')
 
 @section('adminpage-content')
     <div class="w-full flex justify-between items-center mb-3 mt-1">
@@ -75,17 +75,16 @@
                     </td>
                     <td class="">
                         <div class="flex justify-center gap-x-2">
-                            <a href="{{route('adminpage.category.edit' , ['id' => $category->id])}}">
+                            <a href="{{ route('adminpage.category.edit', ['id' => $category->id]) }}">
                                 <img src="https://img.icons8.com/material-outlined/50/FFFFFF/edit.png" alt="edit"
                                      class="bg-green-700 rounded p-1 size-7 cursor-pointer"/>
                             </a>
-                            <form action="{{route('adminpage.category.delete' , ['id' => $category->id])}}"
-                                  method="POST"
-                                  style="display: inline;">
+                            <form id="delete-category-form-{{ $category->id }}"
+                                  action="{{ route('adminpage.category.delete', ['id' => $category->id]) }}"
+                                  method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit"
-                                        onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?');"
+                                <button type="button" onclick="confirmDelete('delete-category-form', {{ $category->id }})"
                                         class="bg-red-600 rounded p-1 size-7 cursor-pointer">
                                     <img src="https://img.icons8.com/ios-filled/50/FFFFFF/trash.png" alt="delete"/>
                                 </button>
