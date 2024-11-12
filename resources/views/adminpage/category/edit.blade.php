@@ -1,7 +1,7 @@
 <!-- resources/views/admin/dashboard.blade.php -->
 @extends('layouts.adminpage')
 
-@section('title', 'Dashboard - AgroMart adminpage')
+@section('title', 'Dashboard - Edit Category')
 
 @section('adminpage-content')
     <form action="{{route('adminpage.category.update' , ['id' => $category->id])}}" method="POST">
@@ -40,7 +40,7 @@
         </div>
 
         <div class="mt-6 flex items-center justify-end gap-x-6">
-            <button type="button" class="text-sm/6 font-semibold text-gray-900">Batal</button>
+            <button type="button" onclick="window.history.back()" class="text-sm/6 font-semibold text-gray-900">Batal</button>
             <button type="submit"
                     class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                 Update
