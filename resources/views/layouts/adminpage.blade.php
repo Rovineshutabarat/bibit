@@ -8,7 +8,7 @@
         <x-admin-sidebar/>
         <div class="flex-1">
             <x-admin-top-navbar/>
-            <main class="p-6">
+            <main class="p-8 px-10">
                 @yield('adminpage-content')
             </main>
         </div>
