@@ -4,7 +4,7 @@
 @section('title', 'Dashboard - Product')
 
 @section('adminpage-content')
-    <form action="{{route('adminpage.product.update' , ['id' => $product->id])}}" method="POST">
+    <form action="{{route('adminpage.product.update' , ['id' => $product->id])}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="space-y-12">
             <div class="border-b border-gray-900/10 pb-12">
@@ -98,8 +98,7 @@
                                     class="flex w-full cursor-pointer appearance-none items-center justify-center rounded-md border-2 border-dashed border-gray-200 p-6 transition-all hover:border-primary-300"
                                 >
                                     <div class="space-y-1 text-center">
-                                        <div
-                                            class="mx-auto inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
+                                        <div class="mx-auto inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                  stroke-width="1.5" stroke="currentColor" class="h-6 w-6 text-gray-500">
                                                 <path stroke-linecap="round" stroke-linejoin="round"

@@ -91,7 +91,7 @@
                     <td class="p-3">
                         <p class="block text-sm text-slate-800">{{ $product->quantity }}</p>
                     </td>
-                    <td class="p-3">
+                    <td class="p-3 flex justify-center">
                         <a href="{{ url('/' . $product->image) }}" target="_blank">
                             <img src="{{ url('/' . $product->image) }}" alt="Product Image" class="size-12 rounded">
                         </a>
