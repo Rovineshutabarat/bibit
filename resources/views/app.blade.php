@@ -14,7 +14,7 @@
    ])
 </head>
 <body>
-<div>
+<div class="w-full">
     @yield('app-content')
     <x-notify::notify/>
     @notifyJs
