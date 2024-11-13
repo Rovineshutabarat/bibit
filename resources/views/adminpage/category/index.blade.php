@@ -73,7 +73,7 @@
                     <td class="p-3">
                         <p class="block text-sm text-slate-800">{{ $category->description }}</p>
                     </td>
-                    <td class="">
+                    <td >
                         <div class="flex justify-center gap-x-2">
                             <a href="{{ route('adminpage.category.edit', ['id' => $category->id]) }}">
                                 <img src="https://img.icons8.com/material-outlined/50/FFFFFF/edit.png" alt="edit"

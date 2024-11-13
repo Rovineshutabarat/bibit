@@ -12,12 +12,8 @@ export function confirmDelete(form_name, id) {
     }).then((result) => {
         if (result.isConfirmed) {
             document.getElementById(form_name + "-" + id).submit();
-            Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-            });
         }
     });
 }
+
 window.confirmDelete = confirmDelete;

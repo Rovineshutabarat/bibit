@@ -25,12 +25,12 @@ class CategoryController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $validate = $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|string|max:50',
             'description' => 'string|max:255',
         ]);
-        if ($validate) {
-            DB::table('category')->insert($validate);
+        if ($validatedData) {
+            DB::table('category')->insert($validatedData);
             notify()->success('Berhasil Tambah Kategori ⚡️');
             return redirect()->route('adminpage.category.index');
         } else {
