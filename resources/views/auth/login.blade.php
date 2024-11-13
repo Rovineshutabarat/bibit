@@ -68,7 +68,7 @@
                     <hr class="w-full border-gray-300" />
                 </div>
 
-                <button type="submit"
+                <a href="{{ route('login.google.redirect') }}"
                     class="w-full flex items-center justify-center gap-4 py-2.5 px-4 text-sm tracking-wide text-gray-800 border border-gray-300 rounded-md bg-transparent hover:bg-gray-50 focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20px" class="inline" viewBox="0 0 512 512">
                         <path fill="#fbbd00"
@@ -91,7 +91,7 @@
                             data-original="#eb4132" />
                     </svg>
                     Continue with google
-                </button>
+                </a>
             </form>
         </div>
     </div>

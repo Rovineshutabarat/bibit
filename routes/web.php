@@ -4,7 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\SocialiteController;
 
 Route::prefix("adminpage")->name("adminpage.")->middleware('auth')->group(function () {
     // category
@@ -35,3 +35,8 @@ Route::prefix("auth")->name("auth.")->middleware('guest')->group(function () {
 });
 
 Route::get("/auth/logout", [AuthController::class, "logout"])->middleware("auth")->name('auth.logout');
+
+Route::prefix('login/google')->name('login.google.')->middleware('guest')->group(function () {
+    Route::get('/redirect', [SocialiteController::class, 'redirect'])->name('redirect');
+    Route::get('/callback', [SocialiteController::class, 'callback'])->name('callback');
+});

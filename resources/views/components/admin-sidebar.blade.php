@@ -36,10 +36,9 @@
 
             <li>
                 <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100
-                {{ request()->routeIs('adminpage.category*') ? 'bg-gray-200' : '' }}"
+                {{ request()->routeIs('auth.logout') ? 'bg-gray-200' : '' }}"
                     href="{{ route('auth.logout') }}">
-                    <img src="https://img.icons8.com/metro/50/737373/shutdown.png" alt="logout.png"
-                        class="size-5">
+                    <img src="https://img.icons8.com/metro/50/737373/shutdown.png" alt="logout.png" class="size-5">
                     Logout
                 </a>
             </li>
