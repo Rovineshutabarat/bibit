@@ -89,11 +89,11 @@
                         <p class="block text-sm text-slate-800">{{ $product->price }}</p>
                     </td>
                     <td class="p-3">
-                        <p class="block text-sm text-slate-800">{{ $product->quantity }}</p>
+                        <p class="block text-sm text-slate-800">{{ $product->stock }}</p>
                     </td>
                     <td class="p-3 flex justify-center">
                         <a href="{{ url('/' . $product->image) }}" target="_blank">
-                            <img src="{{ url('/' . $product->image) }}" alt="Product Image" class="size-12 rounded">
+                            <img src="{{ url('/' . $product->image) }}" alt="Product Image" class="size-12 rounded object-cover">
                         </a>
                     </td>
                     <td class="p-3">

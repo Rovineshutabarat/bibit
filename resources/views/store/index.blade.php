@@ -1,12 +1,9 @@
-<!-- resources/views/admin/dashboard.blade.php -->
-@extends('app')
+@extends('layouts.store')
 
-@section('title', 'Dashboard - AgroMart adminpage')
+@section('title', 'Store')
 
-@section('app-content')
-    <x-store-navbar />
-    <x-store-carousel />
-    
+@section('store-content')
+    <x-store.carousel />
     <section id="Projects"
         class="w-fit mx-auto mt-24 max-w-screen-xl grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mb-5">
 
@@ -29,6 +26,4 @@
             </div>
         @endforeach
     </section>
-
-    <x-store-footer />
 @endsection
