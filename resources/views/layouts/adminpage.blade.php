@@ -5,9 +5,9 @@
 
 @section('app-content')
     <div class="flex min-h-screen">
-        <x-admin-sidebar/>
+        <x-adminpage.sidebar/>
         <div class="flex-1">
-            <x-admin-top-navbar/>
+            <x-adminpage.navbar/>
             <main class="p-8 px-10">
                 @yield('adminpage-content')
             </main>

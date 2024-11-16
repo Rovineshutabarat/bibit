@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Store;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class AdminTopNavbar extends Component
+class Category extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class AdminTopNavbar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.admin-top-navbar');
+        return view('components.store.category');
     }
 }

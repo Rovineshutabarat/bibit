@@ -14,4 +14,9 @@ class StoreController extends Controller
             'products' => Product::all()
         ]);
     }
+
+    public function cart()
+    {
+        return view('store.cart');
+    }
 }

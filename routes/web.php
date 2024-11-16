@@ -42,6 +42,7 @@ Route::prefix('login/google')->name('login.google.')->middleware('guest')->group
     Route::get('/callback', [SocialiteController::class, 'callback'])->name('callback');
 });
 
-Route::prefix("store")->name("store")->middleware('guest')->group(function () {
+Route::prefix("store")->name("store.")->middleware('guest')->group(function () {
     Route::get('/', [StoreController::class, 'index'])->name('index');
+    Route::get('/cart', [StoreController::class, 'cart'])->name('cart');
 });
