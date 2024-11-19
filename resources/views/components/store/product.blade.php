@@ -28,8 +28,7 @@
                                     {{ $product->name }}
                                 </h3>
                                 <div class="flex items-center bg-gray-50 px-2 rounded-lg">
-                                    <img src="https://img.icons8.com/fluency/48/star--v1.png" alt="star"
-                                        class="w-4 h-4" />
+                                    <img src="https://img.icons8.com/fluency/48/star--v1.png" alt="star" class="w-4 h-4" />
                                     <span class="text-sm text-gray-600 ml-1">4,5</span>
                                 </div>
                             </div>
@@ -43,8 +42,8 @@
                                     <span>20 Terjual</span>
                                 </div>
                                 <div class="flex items-center text-sm text-gray-500">
-                                    <img src="https://img.icons8.com/material-outlined/50/737373/visible.png"
-                                        alt="eye" class="w-4 h-4 mr-1.5" />
+                                    <img src="https://img.icons8.com/material-outlined/50/737373/visible.png" alt="eye"
+                                        class="w-4 h-4 mr-1.5" />
                                     <span>45x Dilihat</span>
                                 </div>
                             </div>
@@ -61,12 +60,14 @@
                                     </div>
                                 </div>
 
-                                <button
-                                    class="flex items-center p-2 justify-center rounded-full bg-green-100 hover:bg-green-200 transition-colors group disabled:opacity-50 disabled:cursor-not-allowed"
-                                    {{ $product->stock == 0 ? 'disabled' : '' }}>
-                                    <img src="https://img.icons8.com/forma-bold-filled/24/40C057/shopping-cart.png"
-                                        alt="add" class="size-6 group-hover:opacity-80 transition-opacity" />
-                                </button>
+                                <form action="{{ route('cart.store', ['id' => $product->id]) }}" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                        class="flex items-center p-2 justify-center rounded-full bg-green-500 hover:bg-green-600 transition-colors group disabled:opacity-50 disabled:cursor-not-allowed">
+                                        <img src="https://img.icons8.com/sf-black-filled/64/FFFFFF/shopping-cart.png"
+                                            alt="add" class="size-5 group-hover:opacity-80 transition-opacity" />
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

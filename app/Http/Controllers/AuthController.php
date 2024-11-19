@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +37,10 @@ class AuthController extends Controller
         }
 
         $validatedData['password'] = Hash::make($validatedData['password']);
-        DB::table('user')->insert($validatedData);
+        $user = User::create($validatedData);
+        Cart::firstOrCreate([
+            "user_id" => $user->id
+        ]);
         notify()->success('Berhasil Registrasi ⚡️');
         return redirect()->route('auth.login');
     }

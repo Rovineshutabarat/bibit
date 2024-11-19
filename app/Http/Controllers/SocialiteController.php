@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\RedirectResponse;
@@ -24,17 +25,19 @@ class SocialiteController extends Controller
         try {
             $googleUser = Socialite::driver('google')->user();
 
-            $user = DB::table('user')->where('google_id', $googleUser->getId())->first();
+            $user = User::where("google_id", $googleUser->id)->first();
 
             if (!$user) {
-                $userId = DB::table('user')->insertGetId([
+                $user_id = User::insertGetId([
                     'google_id' => $googleUser->getId(),
                     'username' => $googleUser->getName(),
                     'email' => $googleUser->getEmail(),
                     'password' => Hash::make(Str::random(10))
                 ]);
-
-                $user = DB::table('user')->where('id', $userId)->first();
+                $user = User::where('id', $user_id)->first();
+                Cart::firstOrCreate([
+                    "user_id" => $user_id
+                ]);
             }
 
             Auth::loginUsingId($user->id);
