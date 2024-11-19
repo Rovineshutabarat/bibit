@@ -42,7 +42,7 @@ class ProductController extends Controller
                 $image->move(public_path('images/product'), $imageName);
                 $validatedData['image'] = 'images/product/' . $imageName;
             }
-            DB::table('product')->insert($validatedData);
+            Product::create($validatedData);
             notify()->success('Berhasil Tambah Produk ⚡️');
             return redirect()->route('adminpage.product.index');
         } else {
@@ -72,7 +72,7 @@ class ProductController extends Controller
         if (!$validatedData) {
             notify()->error('Input Tidak Valid');
         }
-        $product = DB::table('product')->where('id', $id)->first();
+        $product = Product::where('id', $id)->first();
         if (!$product) {
             notify()->error('Produk Tidak Ditemukan');
         }
@@ -82,14 +82,14 @@ class ProductController extends Controller
             $image->move(public_path('images/product'), $imageName);
             $validatedData['image'] = 'images/product/' . $imageName;
         }
-        DB::table('product')->where('id', $id)->update($validatedData);
+        Product::where('id', $id)->update($validatedData);
         notify()->success('Berhasil Update Produk ⚡️');
         return redirect()->route('adminpage.product.index');
     }
 
     public function delete($id): RedirectResponse
     {
-        DB::table('product')->where('id', $id)->delete();
+        Product::where('id', $id)->delete();
         notify()->success('Berhasil Hapus Produk ⚡️');
         return redirect()->route('adminpage.product.index');
     }

@@ -12,10 +12,12 @@ class CategoryController extends Controller
 {
     public function index(): View
     {
-        return view('adminpage.category.index',
+        return view(
+            'adminpage.category.index',
             [
                 'categories' => Category::all()
-            ]);
+            ]
+        );
     }
 
     public function create(): View
@@ -30,7 +32,7 @@ class CategoryController extends Controller
             'description' => 'string|max:255',
         ]);
         if ($validatedData) {
-            DB::table('category')->insert($validatedData);
+            Category::create($validatedData);
             notify()->success('Berhasil Tambah Kategori ⚡️');
             return redirect()->route('adminpage.category.index');
         } else {
@@ -54,7 +56,7 @@ class CategoryController extends Controller
         ]);
         $category = DB::table('category')->where('id', $id)->first();
         if ($category) {
-            DB::table('category')->where('id', $id)->update($validatedData);
+            Category::where('id', $id)->update($validatedData);
             notify()->success('Berhasil Update Kategori ⚡️');
             return redirect()->route('adminpage.category.index');
         } else {
@@ -65,7 +67,7 @@ class CategoryController extends Controller
 
     public function delete($id): RedirectResponse
     {
-        DB::table('category')->where('id', $id)->delete();
+        Category::where('id', $id)->delete();
         notify()->success('Berhasil Hapus Kategori ⚡️');
         return redirect()->route('adminpage.category.index');
     }

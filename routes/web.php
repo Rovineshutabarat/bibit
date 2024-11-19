@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
@@ -42,7 +43,15 @@ Route::prefix('login/google')->name('login.google.')->middleware('guest')->group
     Route::get('/callback', [SocialiteController::class, 'callback'])->name('callback');
 });
 
-Route::prefix("store")->name("store.")->middleware('guest')->group(function () {
+Route::prefix("store")->name("store.")->group(function () {
     Route::get('/', [StoreController::class, 'index'])->name('index');
-    Route::get('/cart', [StoreController::class, 'cart'])->name('cart');
+});
+
+
+Route::prefix('cart')->name('cart.')->middleware('auth')->group(function () {
+    Route::get('/', [CartController::class, 'index'])->name('index');
+    Route::post("/store/{id}", [CartController::class, "store"])->name("store");
+    Route::post("/addQuantity/{id}", [CartController::class, "addQuantity"])->name("add.quantity");
+    Route::post("/subtractQuantity/{id}", [CartController::class, "subtractQuantity"])->name("subtract.quantity");
+    Route::delete("/delete/{id}", [CartController::class, "delete"])->name("delete");
 });

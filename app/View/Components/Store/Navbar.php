@@ -2,6 +2,8 @@
 
 namespace App\View\Components\Store;
 
+use App\Models\Cart;
+use App\Models\CartProduct;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -21,6 +23,11 @@ class Navbar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.store.navbar');
+        $cart = Cart::where("user_id", auth()->user()->id)->first();
+        $cart_product = CartProduct::where("cart_id", $cart->id)->count();
+
+        return view('components.store.navbar', [
+            'user_cart_count' => $cart_product,
+        ]);
     }
 }
