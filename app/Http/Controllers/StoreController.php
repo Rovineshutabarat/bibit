@@ -26,4 +26,9 @@ class StoreController extends Controller
             'product' => Product::findOrFail($id)
         ]);
     }
+
+    public function house()
+    {
+        return view('home');
+    }
 }

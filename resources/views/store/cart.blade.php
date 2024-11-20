@@ -130,12 +130,42 @@
             </form>
 
             <ul class="text-gray-800 mt-6 space-y-3">
-                <li class="flex flex-wrap gap-4 text-sm">Subtotal <span class="ml-auto font-bold">$200.00</span></li>
-                <li class="flex flex-wrap gap-4 text-sm">Shipping <span class="ml-auto font-bold">$2.00</span></li>
-                <li class="flex flex-wrap gap-4 text-sm">Tax <span class="ml-auto font-bold">$4.00</span></li>
+                <!-- Subtotal -->
+                <li class="flex flex-wrap gap-4 text-sm">
+                    Subtotal
+                    <span class="ml-auto font-bold">Rp. {{ number_format($total, 0, ',', '.') }}</span>
+                </li>
+
+                <!-- Shipping -->
+                @php
+                    $shipping = 20000; 
+                @endphp
+                <li class="flex flex-wrap gap-4 text-sm">
+                    Shipping
+                    <span class="ml-auto font-bold">Rp. {{ number_format($shipping, 0, ',', '.') }}</span>
+                </li>
+
+                <!-- Tax -->
+                @php
+                    $tax = $total * 0.1; 
+                @endphp
+                <li class="flex flex-wrap gap-4 text-sm">
+                    Tax
+                    <span class="ml-auto font-bold">Rp. {{ number_format($tax, 0, ',', '.') }}</span>
+                </li>
+
                 <hr class="border-gray-300" />
-                <li class="flex flex-wrap gap-4 text-sm font-bold">Total <span class="ml-auto">$206.00</span></li>
+
+                <!-- Total -->
+                @php
+                    $grand_total = $total + $shipping + $tax;
+                @endphp
+                <li class="flex flex-wrap gap-4 text-sm font-bold">
+                    Total
+                    <span class="ml-auto">Rp. {{ number_format($grand_total, 0, ',', '.') }}</span>
+                </li>
             </ul>
+
 
             <div class="mt-5">
                 <h1 class="text-sm font-semibold">Payment Method</h1>

@@ -56,3 +56,5 @@ Route::prefix('cart')->name('cart.')->middleware('auth')->group(function () {
     Route::post("/subtractQuantity/{id}", [CartController::class, "subtractQuantity"])->name("subtract.quantity");
     Route::delete("/delete/{id}", [CartController::class, "delete"])->name("delete");
 });
+
+Route::get('/', [App\Http\Controllers\StoreController::class, 'house'])->name('home');
