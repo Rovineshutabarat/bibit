@@ -19,4 +19,11 @@ class StoreController extends Controller
     {
         return view('store.cart');
     }
+
+    public function productDetail($id)
+    {
+        return view('store.product-detail', [
+            'product' => Product::findOrFail($id)
+        ]);
+    }
 }

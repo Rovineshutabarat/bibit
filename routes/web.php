@@ -45,6 +45,7 @@ Route::prefix('login/google')->name('login.google.')->middleware('guest')->group
 
 Route::prefix("store")->name("store.")->group(function () {
     Route::get('/', [StoreController::class, 'index'])->name('index');
+    Route::get('/detail/{id}', [StoreController::class, 'productDetail'])->name('product.detail');
 });
 
 
