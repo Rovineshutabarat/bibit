@@ -7,7 +7,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach ($products as $product)
-                <div class="group">
+                <a href="{{route("store.product.detail", ['id' => $product->id])}}" class="group cursor-pointer">
                     <div
                         class="relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
                         <div class="aspect-[4/3] overflow-hidden relative">
@@ -71,7 +71,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             @endforeach
         </div>
     </div>
