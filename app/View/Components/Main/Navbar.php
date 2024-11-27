@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\Store;
+namespace App\View\Components\Main;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Benefit extends Component
+class Navbar extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class Benefit extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.store.benefit');
+        return view('components.main.navbar');
     }
 }

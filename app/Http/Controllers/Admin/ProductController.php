@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
@@ -13,14 +14,14 @@ class ProductController extends Controller
 {
     public function index(): View
     {
-        return view('adminpage.product.index', [
+        return view('pages.adminpage.product.index', [
             'products' => Product::all()
         ]);
     }
 
     public function create(): View
     {
-        return view('adminpage.product.create', [
+        return view('pages.adminpage.product.create', [
             'categories' => Category::all()
         ]);
     }
@@ -53,7 +54,7 @@ class ProductController extends Controller
 
     public function edit($id): View
     {
-        return view('adminpage.product.edit', [
+        return view('pages.adminpage.product.edit', [
             'product' => Product::with('category')->findOrFail($id),
             'categories' => Category::all()
         ]);

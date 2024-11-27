@@ -1,13 +1,21 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\SocialiteController;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\Store\CartController;
+use App\Http\Controllers\Store\ProductDetailController;
+use App\Http\Controllers\Store\StoreController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\SocialiteController;
-use App\Http\Controllers\StoreController;
-use App\Http\Controllers\ProfileController;
+
+
+Route::name("main.")->group(function () {
+    Route::get("/", [MainController::class, 'homepage'])->name("homepage");
+    // Route::get("/about", [MainController::class, 'profile'])->name("about");
+    Route::get("/profile", [MainController::class, 'profile'])->name("profile")->middleware("auth");
+});
 
 
 Route::prefix("adminpage")->name("adminpage.")->middleware('auth')->group(function () {
@@ -45,22 +53,15 @@ Route::prefix('login/google')->name('login.google.')->middleware('guest')->group
     Route::get('/callback', [SocialiteController::class, 'callback'])->name('callback');
 });
 
-Route::prefix("store")->name("store.")->middleware('auth')->group(function () {
+Route::prefix("store")->name("store.")->group(function () {
     Route::get('/', [StoreController::class, 'index'])->name('index');
-    Route::get('/detail/{id}', [StoreController::class, 'productDetail'])->name('product.detail');
+    Route::get('/detail/{id}', [ProductDetailController::class, 'index'])->name('product.detail');
 });
 
 
 Route::prefix('cart')->name('cart.')->middleware('auth')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('index');
     Route::post("/store/{id}", [CartController::class, "store"])->name("store");
-    Route::post("/addQuantity/{id}", [CartController::class, "addQuantity"])->name("add.quantity");
-    Route::post("/subtractQuantity/{id}", [CartController::class, "subtractQuantity"])->name("subtract.quantity");
     Route::delete("/delete/{id}", [CartController::class, "delete"])->name("delete");
 });
 
-Route::prefix('profile')->name('profile.')->middleware('auth')->group(function () {
-    Route::get('/', [ProfileController::class, 'index'])->name('index');
-});
-
-Route::get('/', [App\Http\Controllers\StoreController::class, 'house'])->name('home');
