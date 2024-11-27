@@ -10,7 +10,7 @@
         <div class="hidden lg:block">
             <ul class="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
                 <li class="flex items-center p-1 text-sm gap-x-2 text-slate-600">
-                    <a href="#" class="flex items-center">Beranda</a>
+                    <a href="{{ route('store.index') }}" class="flex items-center">Beranda</a>
                 </li>
                 <li class="flex items-center p-1 text-sm gap-x-2 text-slate-600">
                     <a href="#" class="flex items-center">Produk</a>
@@ -40,13 +40,30 @@
 
             @if (Auth::check())
                 <!-- User Account Icon -->
-                <button class="p-1 text-slate-600 hover:text-slate-800">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                </button>
+                <div class="relative">
+                    <button id="userDropdownBtn" class="p-1 text-slate-600 hover:text-slate-800 relative z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </button>
+
+                    <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 border">
+                        <ul class="py-1">
+                            <li>
+                                <a href="{{ route('profile.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    Profil
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('auth.logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
                 <!-- Shopping Cart Icon -->
                 <a href="{{route("cart.index")}}" class="relative p-1 text-slate-600 hover:text-slate-800">
@@ -79,3 +96,26 @@
         </div>
     </div>
 </nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const userDropdownBtn = document.getElementById('userDropdownBtn');
+        const userDropdown = document.getElementById('userDropdown');
+
+        // Toggle dropdown
+        userDropdownBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userDropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function() {
+            userDropdown.classList.add('hidden');
+        });
+
+        // Prevent dropdown from closing when clicking inside
+        userDropdown.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    });
+</script>

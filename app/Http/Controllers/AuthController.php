@@ -51,17 +51,31 @@ class AuthController extends Controller
             'email' => 'required|email|string|max:70',
             'password' => 'required|string|max:255',
         ]);
-
+    
         $credentials = $request->only('email', 'password');
-
+    
         if (!Auth::attempt($credentials)) {
             notify()->error('Email atau password salah');
             return redirect()->back()
                 ->withInput($request->only('email'));
         }
-
+    
+        // Periksa role pengguna yang login
+        $user = Auth::user();
+        
         notify()->success('Berhasil Login ⚡️');
-        return redirect()->route('adminpage.product.index');
+        
+        // Redirect berdasarkan role
+        if ($user->role === 0) {
+            // Jika role 0, arahkan ke halaman admin
+            return redirect()->route('adminpage.product.index');
+        } elseif ($user->role === 1) {
+            // Jika role 1, arahkan ke halaman store
+            return redirect()->route('store.index');
+        }
+    
+        // Jika role tidak dikenali, kembalikan ke halaman home
+        return redirect()->route('home');
     }
 
     public function logout()
