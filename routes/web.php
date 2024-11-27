@@ -15,6 +15,8 @@ Route::name("main.")->group(function () {
     Route::get("/", [MainController::class, 'homepage'])->name("homepage");
     // Route::get("/about", [MainController::class, 'profile'])->name("about");
     Route::get("/profile", [MainController::class, 'profile'])->name("profile")->middleware("auth");
+    Route::get("/contact-us", [MainController::class, 'ContactUs'])->name("contact.us");
+    Route::get("/about-us", [MainController::class, 'AboutUs'])->name("about.us");
 });
 
 

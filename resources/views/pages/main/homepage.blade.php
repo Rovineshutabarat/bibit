@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Store')
+@section('title', 'Homepage')
 
 @section('main-content')
 <!-- Header/Hero Section -->
