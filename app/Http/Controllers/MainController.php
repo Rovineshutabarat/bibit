@@ -19,4 +19,9 @@ class MainController extends Controller
             'user' => Auth::user()
         ]);
     }
+
+    public function contactUs(): View
+    {
+        return view("pages.main.contact-us");
+    }
 }

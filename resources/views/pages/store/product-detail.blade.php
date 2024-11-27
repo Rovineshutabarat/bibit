@@ -1,6 +1,6 @@
 @extends('layouts.store')
 
-@section('title', 'Store')
+@section('title', 'Product Detail')
 
 @section('store-content')
 <div class="font-sans p-8 tracking-wide max-w-screen-xl mt-5 mx-auto">

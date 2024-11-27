@@ -1,6 +1,6 @@
 @extends('layouts.store')
 
-@section('title', 'Store')
+@section('title', 'Store Page')
 
 @section('store-content')
 <section>

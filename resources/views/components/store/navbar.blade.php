@@ -19,7 +19,7 @@
                     <a href="#" class="flex items-center">Tentang Kami</a>
                 </li>
                 <li class="flex items-center p-1 text-sm gap-x-2 text-slate-600">
-                    <a href="#" class="flex items-center">Kontak</a>
+                    <a href="{{route('main.contact.us')}}" class="flex items-center">Kontak</a>
                 </li>
             </ul>
         </div>

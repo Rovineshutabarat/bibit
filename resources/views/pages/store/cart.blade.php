@@ -1,6 +1,6 @@
 @extends('layouts.store')
 
-@section('title', 'Keranjang Belanja')
+@section('title', 'Shopping Cart')
 
 @section('store-content')
 <div class="font-sans max-w-7xl max-md:max-w-xl mx-auto bg-gray-50 mt-10 p-12 rounded-lg">
