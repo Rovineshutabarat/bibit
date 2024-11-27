@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\ProfileController;
+
 
 Route::prefix("adminpage")->name("adminpage.")->middleware('auth')->group(function () {
     // category
@@ -43,7 +45,7 @@ Route::prefix('login/google')->name('login.google.')->middleware('guest')->group
     Route::get('/callback', [SocialiteController::class, 'callback'])->name('callback');
 });
 
-Route::prefix("store")->name("store.")->group(function () {
+Route::prefix("store")->name("store.")->middleware('auth')->group(function () {
     Route::get('/', [StoreController::class, 'index'])->name('index');
     Route::get('/detail/{id}', [StoreController::class, 'productDetail'])->name('product.detail');
 });
@@ -55,6 +57,10 @@ Route::prefix('cart')->name('cart.')->middleware('auth')->group(function () {
     Route::post("/addQuantity/{id}", [CartController::class, "addQuantity"])->name("add.quantity");
     Route::post("/subtractQuantity/{id}", [CartController::class, "subtractQuantity"])->name("subtract.quantity");
     Route::delete("/delete/{id}", [CartController::class, "delete"])->name("delete");
+});
+
+Route::prefix('profile')->name('profile.')->middleware('auth')->group(function () {
+    Route::get('/', [ProfileController::class, 'index'])->name('index');
 });
 
 Route::get('/', [App\Http\Controllers\StoreController::class, 'house'])->name('home');
