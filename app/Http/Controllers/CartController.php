@@ -13,19 +13,19 @@ class CartController extends Controller
     public function index()
     {
         $cart = Cart::where("user_id", auth()->user()->id)->first();
-    
+
         $cart_products = CartProduct::where("cart_id", $cart->id)->get();
-    
+
         $total = $cart_products->sum(function ($cart_product) {
             return $cart_product->product->price * $cart_product->quantity;
         });
-    
-        return view("store.cart", [
+
+        return view("pages.store.cart", [
             "cart_products" => $cart_products,
             "total" => $total,
         ]);
     }
-    
+
 
     public function store(Request $request, $id)
     {

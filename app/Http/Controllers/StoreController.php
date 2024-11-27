@@ -10,7 +10,7 @@ class StoreController extends Controller
 {
     public function index(): View
     {
-        return view('store.index', [
+        return view('pages.store.index', [
             'products' => Product::all()
         ]);
     }
@@ -25,10 +25,5 @@ class StoreController extends Controller
         return view('store.product-detail', [
             'product' => Product::findOrFail($id)
         ]);
-    }
-
-    public function house()
-    {
-        return view('home');
     }
 }
