@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\MainController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Store\CartController;
+use App\Http\Controllers\Store\ProductDetailController;
+use App\Http\Controllers\Store\StoreController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\SocialiteController;
-use App\Http\Controllers\StoreController;
-use App\Http\Controllers\ProfileController;
 
 
 Route::name("main.")->group(function () {
@@ -55,7 +55,7 @@ Route::prefix('login/google')->name('login.google.')->middleware('guest')->group
 
 Route::prefix("store")->name("store.")->group(function () {
     Route::get('/', [StoreController::class, 'index'])->name('index');
-    Route::get('/detail/{id}', [StoreController::class, 'productDetail'])->name('product.detail');
+    Route::get('/detail/{id}', [ProductDetailController::class, 'index'])->name('product.detail');
 });
 
 

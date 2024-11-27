@@ -74,14 +74,14 @@
 
             <div class="flex flex-wrap gap-4 mt-8">
                 <button type="button"
-                    class="min-w-[200px] px-4 py-3 bg-yellow-400 hover:bg-yellow-500 text-white text-sm font-semibold rounded-lg">Buy
+                    class="min-w-[200px] px-4 py-3 bg-green-500 hover:bg-yellow-500 text-white text-sm font-semibold rounded-lg">Buy
                     now</button>
 
 
                 <form action="{{ route('cart.store', ['id' => $product->id]) }}" method="POST">
                     @csrf
                     <button type="submit"
-                        class="min-w-[200px] px-4 py-2.5 border border-yellow-400 bg-transparent hover:bg-gray-50 text-gray-800 text-sm font-semibold rounded-lg">
+                        class="min-w-[200px] px-4 py-2.5 border border-green-400 bg-transparent hover:bg-gray-50 text-gray-800 text-sm font-semibold rounded-lg">
                         Add to cart
                     </button>
                 </form>
@@ -91,7 +91,7 @@
             <div class="mt-8">
                 <ul class="flex border-b">
                     <li
-                        class="text-gray-800 font-bold text-sm bg-gray-100 py-3 px-8 border-b-2 border-yellow-400 cursor-pointer transition-all">
+                        class="text-gray-800 font-bold text-sm bg-gray-100 py-3 px-8 border-b-2 border-green-400 cursor-pointer transition-all">
                         Description</li>
                     <li
                         class="text-gray-600 font-bold text-sm hover:bg-gray-100 py-3 px-8 cursor-pointer transition-all">
