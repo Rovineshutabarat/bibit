@@ -20,8 +20,13 @@ class MainController extends Controller
         ]);
     }
 
-    public function contactUs(): View
+    public function ContactUs(): View
     {
         return view("pages.main.contact-us");
+    }
+
+    public function AboutUs(): View
+    {
+        return view("pages.main.about-us");
     }
 }
