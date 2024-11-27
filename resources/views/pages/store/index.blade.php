@@ -92,6 +92,7 @@
 
                                     <form action="{{ route('cart.store', ['id' => $product->id]) }}" method="POST">
                                         @csrf
+                                        <input type="hidden" name="quantity" value="1">
                                         <button type="submit"
                                             class="flex items-center p-2 justify-center rounded-full bg-green-500 hover:bg-green-600 transition-colors group disabled:opacity-50 disabled:cursor-not-allowed">
                                             <img src="https://img.icons8.com/sf-black-filled/64/FFFFFF/shopping-cart.png"

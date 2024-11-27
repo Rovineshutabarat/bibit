@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Store\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SocialiteController;
@@ -62,8 +62,6 @@ Route::prefix("store")->name("store.")->group(function () {
 Route::prefix('cart')->name('cart.')->middleware('auth')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('index');
     Route::post("/store/{id}", [CartController::class, "store"])->name("store");
-    Route::post("/addQuantity/{id}", [CartController::class, "addQuantity"])->name("add.quantity");
-    Route::post("/subtractQuantity/{id}", [CartController::class, "subtractQuantity"])->name("subtract.quantity");
     Route::delete("/delete/{id}", [CartController::class, "delete"])->name("delete");
 });
 

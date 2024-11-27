@@ -10,13 +10,10 @@
         <div class="hidden lg:block">
             <ul class="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
                 <li class="flex items-center p-1 text-sm gap-x-2 text-slate-600">
-                    <a href="{{ route('store.index') }}" class="flex items-center">Beranda</a>
+                    <a href="{{ route('main.homepage') }}" class="flex items-center">Beranda</a>
                 </li>
                 <li class="flex items-center p-1 text-sm gap-x-2 text-slate-600">
-                    <a href="#" class="flex items-center">Produk</a>
-                </li>
-                <li class="flex items-center p-1 text-sm gap-x-2 text-slate-600">
-                    <a href="#" class="flex items-center">Kategori</a>
+                    <a href="{{ route('store.index') }}" class="flex items-center">Belanja</a>
                 </li>
                 <li class="flex items-center p-1 text-sm gap-x-2 text-slate-600">
                     <a href="#" class="flex items-center">Tentang Kami</a>
@@ -31,32 +28,20 @@
         <div class="flex items-center gap-4">
             <!-- Search Icon -->
             <button class="p-1 text-slate-600 hover:text-slate-800">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
+                <img src="https://img.icons8.com/material-outlined/50/search.png" alt="" class="size-5">
             </button>
 
             @if (Auth::check())
                 <!-- Shopping Cart Icon -->
                 <a href="{{route("cart.index")}}" class="relative p-1 text-slate-600 hover:text-slate-800">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
+                    <img src="https://img.icons8.com/material-outlined/50/shopping-cart--v1.png" alt="" class="size-5">
                     <span
                         class="absolute -top-1 -right-1 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full">{{$user_cart_count}}</span>
                 </a>
                 <!-- User Account Icon -->
                 <div class="relative">
                     <button id="userDropdownBtn" class="p-1 text-slate-600 hover:text-slate-800 relative z-10">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
+                        <img src="https://img.icons8.com/puffy/32/user.png" alt="" class="size-5">
                     </button>
 
                     <div id="userDropdown"
