@@ -86,4 +86,20 @@ class AuthController extends Controller
             return redirect()->route('auth.login');
         }
     }
+
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'username' => 'string|max:50',
+            'email' => 'email|string|max:70',
+            'password' => 'string|max:255',
+        ]);
+        $user = User::where('id', $id)->update($validatedData);
+        if (!$user) {
+            notify()->success('Gagal Update Profil ⚡️');
+            return redirect()->back();
+        }
+        notify()->success('Berhasil Update Profil ⚡️');
+        return redirect()->route('main.profile');
+    }
 }
