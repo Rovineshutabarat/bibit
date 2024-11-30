@@ -17,6 +17,7 @@ Route::name("main.")->group(function () {
     Route::get("/contact-us", [MainController::class, 'ContactUs'])->name("contact.us");
     Route::get("/about-us", [MainController::class, 'AboutUs'])->name("about.us");
     Route::post("/update/profile/{id}", [AuthController::class, "update"])->name("update.profile")->middleware('auth');
+    Route::delete("/delete/profile/{id}", [AuthController::class, "deleteProfilePicture"])->name("delete.profile.picture")->middleware('auth');
 });
 
 

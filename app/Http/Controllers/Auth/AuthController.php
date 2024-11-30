@@ -93,13 +93,33 @@ class AuthController extends Controller
             'username' => 'string|max:50',
             'email' => 'email|string|max:70',
             'password' => 'string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-        $user = User::where('id', $id)->update($validatedData);
-        if (!$user) {
-            notify()->success('Gagal Update Profil ⚡️');
-            return redirect()->back();
+        if (!$validatedData) {
+            notify()->error('Input Tidak Valid');
         }
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('images/user'), $imageName);
+            $validatedData['image'] = 'images/user/' . $imageName;
+        }
+        User::where('id', $id)->update($validatedData);
         notify()->success('Berhasil Update Profil ⚡️');
         return redirect()->route('main.profile');
+    }
+
+    public function deleteProfilePicture(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        if ($user->image) {
+            $user->image = "";
+            $user->save();
+            notify()->success('Foto profil berhasil dihapus ⚡️');
+            return redirect()->route('main.profile');
+        } else {
+            notify()->error('Tidak ada foto profil yang dapat dihapus');
+            return redirect()->back();
+        }
     }
 }
