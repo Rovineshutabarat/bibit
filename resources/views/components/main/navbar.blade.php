@@ -8,6 +8,7 @@
                 <a href=""
                     class="hover:text-green-200 @if(request()->routeIs('home')) text-green-200 @endif">Beranda</a>
                 <a href="{{ route('auth.login') }}" class="hover:text-green-200">Login</a>
+                <a href="{{ route('store.index') }}" class="hover:text-green-200 @if(request()->routeIs('store.index')) text-green-200 @endif">Store</a>
             </div>
         </div>
     </div>
