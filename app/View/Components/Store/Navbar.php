@@ -31,6 +31,7 @@ class Navbar extends Component
         }
         return view('components.store.navbar', [
             'user_cart_count' => $cart_product,
+            'user' => Auth::user(),
         ]);
     }
 }

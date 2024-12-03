@@ -4,38 +4,10 @@
 
 @section('store-content')
 <section>
-    <!-- Slider Section -->
-    <x-store.carousel />
-
-    <!-- Category Section -->
-    <section class="w-full bg-white py-16">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-2xl font-bold text-gray-800 mb-8">Kategori Unggulan</h2>
-            <div class="grid grid-cols-5 gap-x-7">
-                @foreach ($categories as $category)
-                    <div class="relative overflow-hidden rounded-xl cursor-pointer group h-44">
-                        <img src="{{$category->image}}"
-                            class="absolute inset-0 object-cover bg-center transition-all h-44 duration-300 group-hover:brightness-50">
-                        </img>
-
-                        <div
-                            class="absolute inset-0 flex items-end justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <span class="text-white text-sm font-medium text-center bg-black/50 px-3 py-7 w-full rounded">
-                                {{$category->name}}
-                            </span>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    <!-- Product Section -->
     <section class="w-full bg-gray-50 py-16">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex items-center justify-between mb-8">
                 <h2 class="text-2xl font-bold text-gray-800">Produk Terbaru</h2>
-                <a href="#" class="text-green-600 hover:text-green-700 font-medium text-sm">Lihat Semua</a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -108,48 +80,6 @@
                         </div>
                     </a>
                 @endforeach
-            </div>
-        </div>
-    </section>
-
-
-    <x-store.popular-product />
-
-
-    <!-- Benefit Section -->
-    <section class="w-full bg-gray-50 py-16">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">Mengapa Memilih Kami?</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="flex flex-col items-center text-center p-6 bg-white rounded-xl">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                        <img src="https://img.icons8.com/fluency/48/delivery.png" alt="delivery" class="w-8 h-8" />
-                    </div>
-                    <h3 class="font-semibold text-gray-800 mb-2">Pengiriman Cepat</h3>
-                    <p class="text-sm text-gray-500">Pesanan Anda akan sampai dalam waktu 24 jam</p>
-                </div>
-                <div class="flex flex-col items-center text-center p-6 bg-white rounded-xl">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                        <img src="https://img.icons8.com/fluency/48/guarantee.png" alt="guarantee" class="w-8 h-8" />
-                    </div>
-                    <h3 class="font-semibold text-gray-800 mb-2">Kualitas Terjamin</h3>
-                    <p class="text-sm text-gray-500">Produk fresh langsung dari petani</p>
-                </div>
-                <div class="flex flex-col items-center text-center p-6 bg-white rounded-xl">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                        <img src="https://img.icons8.com/fluency/48/wallet.png" alt="wallet" class="w-8 h-8" />
-                    </div>
-                    <h3 class="font-semibold text-gray-800 mb-2">Harga Terbaik</h3>
-                    <p class="text-sm text-gray-500">Harga langsung dari petani tanpa perantara</p>
-                </div>
-                <div class="flex flex-col items-center text-center p-6 bg-white rounded-xl">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                        <img src="https://img.icons8.com/fluency/48/customer-support.png" alt="support"
-                            class="w-8 h-8" />
-                    </div>
-                    <h3 class="font-semibold text-gray-800 mb-2">Layanan 24/7</h3>
-                    <p class="text-sm text-gray-500">Tim support siap membantu Anda</p>
-                </div>
             </div>
         </div>
     </section>
