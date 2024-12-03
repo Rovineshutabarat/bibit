@@ -86,4 +86,15 @@ class CategoryController extends Controller
         notify()->success('Berhasil Hapus Kategori ⚡️');
         return redirect()->route('adminpage.category.index');
     }
+
+    public function search(Request $request): View
+    {
+        $search = $request->search ? $request->search : '';
+        return view(
+            'pages.adminpage.category.index',
+            [
+                'categories' => Category::where('name', 'like', '%' . $search . '%')->get()
+            ]
+        );
+    }
 }

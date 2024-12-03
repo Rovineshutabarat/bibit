@@ -31,6 +31,7 @@ Route::prefix("adminpage")->name("adminpage.")->middleware('auth')->group(functi
         // operation
         Route::post('/store', [CategoryController::class, 'store'])->name('store');
         Route::post('/update/{id}', [CategoryController::class, 'update'])->name('update');
+        Route::post('/search', [CategoryController::class, 'search'])->name('search');
         Route::delete('/delete/{id}', [CategoryController::class, 'delete'])->name('delete');
     });
     // product
