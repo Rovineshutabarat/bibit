@@ -53,6 +53,9 @@
                     <p class="block text-sm font-normal leading-none">Deskripsi</p>
                 </th>
                 <th class="p-2 border-b border-slate-300">
+                    <p class="block text-sm font-normal leading-none">Gambar</p>
+                </th>
+                <th class="p-2 border-b border-slate-300">
                     <p class="block text-sm font-normal leading-none">Aksi</p>
                 </th>
             </tr>
@@ -68,6 +71,12 @@
                     </td>
                     <td class="p-3">
                         <p class="block text-sm text-slate-800">{{ $category->description }}</p>
+                    </td>
+                    <td class="p-3 flex justify-center items-center">
+                        <a href="{{ url('/' . $category->image) }}" target="_blank">
+                            <img src="{{ url('/' . $category->image) }}" alt="Product Image"
+                                class="size-12 rounded object-cover">
+                        </a>
                     </td>
                     <td>
                         <div class="flex justify-center gap-x-2">
