@@ -13,7 +13,8 @@
             <h2 class="text-2xl font-bold text-gray-800 mb-8">Kategori Unggulan</h2>
             <div class="grid grid-cols-5 gap-x-7">
                 @foreach ($categories as $category)
-                    <div class="relative overflow-hidden rounded-xl cursor-pointer group h-44">
+                    <a href="{{route('store.index', ['category' => $category->id])}}"
+                        class="relative overflow-hidden rounded-xl cursor-pointer group h-44">
                         <img src="{{url('/' . $category->image)}}"
                             class="absolute w-full inset-0 object-cover bg-center transition-all h-44 duration-300 group-hover:brightness-50">
                         </img>
@@ -24,7 +25,7 @@
                                 {{$category->name}}
                             </span>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         </div>
@@ -75,11 +76,13 @@
                                             alt="shopping-bag" class="w-4 h-4 mr-1.5" />
                                         <span>20 Terjual</span>
                                     </div>
-                                    <div class="flex items-center text-sm text-gray-500">
-                                        <img src="https://img.icons8.com/material-outlined/50/737373/visible.png" alt="eye"
-                                            class="w-4 h-4 mr-1.5" />
-                                        <span>45x Dilihat</span>
-                                    </div>
+                                    @if ($product->total_view > 0)
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <img src="https://img.icons8.com/material-outlined/50/737373/visible.png" alt="eye"
+                                                class="w-4 h-4 mr-1.5" />
+                                            <span>{{$product->total_view}}x Dilihat</span>
+                                        </div>
+                                    @endif
                                 </div>
 
                                 <div class="flex items-center justify-between">
@@ -88,9 +91,6 @@
                                             <p class="text-xl font-bold text-gray-900">
                                                 Rp {{ number_format($product->price, 0, ',', '.') }}
                                             </p>
-                                            <span class="ml-2 text-xs font-medium text-green-600 bg-green-100 px-2 rounded">
-                                                -70%
-                                            </span>
                                         </div>
                                     </div>
 

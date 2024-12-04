@@ -7,7 +7,7 @@
     <section class="w-full bg-gray-50 py-16">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex items-center justify-between mb-8">
-                <h2 class="text-2xl font-bold text-gray-800">Produk Terbaru</h2>
+                <h2 class="text-2xl font-bold text-gray-800"></h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

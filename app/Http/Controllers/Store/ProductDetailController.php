@@ -11,8 +11,11 @@ class ProductDetailController extends Controller
 {
     public function index($id): View
     {
+        $product = Product::findOrFail($id);
+        $product->increment('total_view');
+
         return view('pages.store.product-detail', [
-            'product' => Product::findOrFail($id)
+            'product' => $product
         ]);
     }
 }

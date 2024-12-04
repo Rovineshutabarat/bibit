@@ -42,8 +42,13 @@ class SocialiteController extends Controller
 
             Auth::loginUsingId($user->id);
 
-            notify()->success('Berhasil Login ⚡️');
-            return redirect()->route('adminpage.category.index');
+            if ($user->role === 0) {
+                notify()->success('Berhasil Login ⚡️');
+                return redirect()->route('adminpage.dashboard.index');
+            } elseif ($user->role === 1) {
+                notify()->success('Berhasil Login ⚡️');
+                return redirect()->route('store.index');
+            }
         } catch (Exception $e) {
             notify()->error('Gagal Login: ' . $e->getMessage());
             return redirect()->route('auth.login');

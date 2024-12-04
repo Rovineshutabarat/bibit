@@ -14,9 +14,14 @@ class StoreController extends Controller
     public function index(Request $request): View
     {
         $search = $request->query('search');
-        if ($search != null) {
-            return view('pages.store.search_product', [
-                'products' => Product::where('name', 'like', '%' . $search . '%')->get(),
+        $category = $request->query('category');
+        if ($search != null || $category != null) {
+            return view('pages.store.filter_product', [
+                'products' => Product::where('name', 'like', '%' . $search . '%')
+                    ->when($category, function ($query) use ($category) {
+                        return $query->where('category_id', $category);
+                    })
+                    ->get(),
             ]);
         }
         return view('pages.store.index', [

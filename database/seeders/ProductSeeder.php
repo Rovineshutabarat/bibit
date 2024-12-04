@@ -17,6 +17,7 @@ class ProductSeeder extends Seeder
                 "price" => 35000,
                 "stock" => 34,
                 "image" => "images/product/1733300892_bibit_jeruk.jpg",
+                'total_view' => 0,
                 "category_id" => 1,
             ],
             [
@@ -25,6 +26,7 @@ class ProductSeeder extends Seeder
                 "price" => 67000,
                 "stock" => 21,
                 "image" => "images/product/1733301678_bibit_mangga.jpg",
+                'total_view' => 0,
                 "category_id" => 1,
             ],
             [
@@ -33,6 +35,7 @@ class ProductSeeder extends Seeder
                 "price" => 85000,
                 "stock" => 34,
                 "image" => "images/product/1733302076_bibit_alpukat.jpg",
+                'total_view' => 0,
                 "category_id" => 1,
             ],
             [
@@ -41,6 +44,7 @@ class ProductSeeder extends Seeder
                 "price" => 35000,
                 "stock" => 12,
                 "image" => "images/product/1733302316_bibit_pepaya.jpeg",
+                'total_view' => 0,
                 "category_id" => 1,
             ],
             [
@@ -49,6 +53,7 @@ class ProductSeeder extends Seeder
                 "price" => 124000,
                 "stock" => 34,
                 "image" => "images/product/1733300592_bibit_rambutan.jpg",
+                'total_view' => 0,
                 "category_id" => 1,
             ]
         ];

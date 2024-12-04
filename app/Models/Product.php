@@ -18,6 +18,7 @@ class Product extends Model
         'price',
         'stock',
         'image',
+        'total_view',
         'category_id',
     ];
 
