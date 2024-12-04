@@ -9,6 +9,8 @@ use App\Http\Controllers\Store\CartController;
 use App\Http\Controllers\Store\OrderController;
 use App\Http\Controllers\Store\ProductDetailController;
 use App\Http\Controllers\Store\StoreController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ListorderController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -22,31 +24,36 @@ Route::name("main.")->group(function () {
 });
 
 
-Route::prefix("adminpage")->name("adminpage.")->middleware('auth')->group(function () {
-    // category
+Route::middleware(['auth', 'role:0'])->prefix("adminpage")->name("adminpage.")->group(function () {
     Route::prefix("category")->name("category.")->group(function () {
-        // view
         Route::get('/', [CategoryController::class, 'index'])->name('index');
         Route::get('/create', [CategoryController::class, 'create'])->name('create');
         Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('edit');
-        // operation
         Route::post('/store', [CategoryController::class, 'store'])->name('store');
         Route::post('/update/{id}', [CategoryController::class, 'update'])->name('update');
         Route::post('/search', [CategoryController::class, 'search'])->name('search');
         Route::delete('/delete/{id}', [CategoryController::class, 'delete'])->name('delete');
     });
-    // product
+
     Route::prefix("product")->name("product.")->group(function () {
-        // View
         Route::get('/', [ProductController::class, 'index'])->name('index');
         Route::get('/create', [ProductController::class, 'create'])->name('create');
         Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('edit');
-        // Operation
         Route::post('/store', [ProductController::class, 'store'])->name('store');
         Route::post('/update/{id}', [ProductController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [ProductController::class, 'delete'])->name('delete');
     });
+
+    Route::prefix("dashboard")->name("dashboard.")->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('index');
+    });
+
+    Route::prefix("listorder")->name("listorder.")->group(function () {
+        Route::get('/', [ListorderController::class, 'index'])->name('index');
+        Route::post('/update/{id}', [ListorderController::class, 'update'])->name('update');
+    });
 });
+
 
 Route::prefix("auth")->name("auth.")->middleware('guest')->group(function () {
     // view
@@ -70,7 +77,7 @@ Route::prefix("store")->name("store.")->group(function () {
 });
 
 
-Route::prefix('cart')->name('cart.')->middleware('auth')->group(function () {
+Route::middleware(['auth', 'role:1'])->prefix('cart')->name('cart.')->middleware('auth')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('index');
     Route::post("/store/{id}", [CartController::class, "store"])->name("store");
     Route::delete("/delete/{id}", [CartController::class, "delete"])->name("delete");
