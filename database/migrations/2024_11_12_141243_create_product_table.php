@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->text('description')->nullable();
             $table->double('price', 8, 2)->nullable(false);
             $table->integer('stock')->nullable(false);
+            $table->integer('total_view')->nullable()->default(0);
             $table->text('image')->nullable();
             $table->foreignId('category_id')->references('id')->on('category');
             $table->timestamps();

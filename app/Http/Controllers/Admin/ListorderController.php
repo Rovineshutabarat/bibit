@@ -13,7 +13,7 @@ class ListorderController extends Controller
 {
     public function index(): View
     {
-        $orders = Order::with(['orderDetails.product', 'user']) // Menyertakan relasi produk dan user
+        $orders = Order::with(['orderDetails.product', 'user'])
             ->get()
             ->map(function ($order) {
                 return [

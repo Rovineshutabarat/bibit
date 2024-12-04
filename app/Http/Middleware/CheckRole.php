@@ -17,18 +17,15 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, $role)
     {
-        // Jika pengguna belum login
         if (!Auth::check()) {
             return redirect()->route('auth.login')->with('error', 'Anda harus login terlebih dahulu');
         }
-    
-        // Jika role pengguna tidak sesuai
-        if (Auth::user()->role !== (int)$role) {
+
+        if (Auth::user()->role !== (int) $role) {
             return redirect()->back()->with('error', 'Anda tidak memiliki akses ke halaman ini');
         }
-    
-        // Jika role sesuai, lanjutkan ke request berikutnya
+
         return $next($request);
     }
-    
+
 }

@@ -46,24 +46,23 @@ class AuthController extends Controller
     }
 
     public function login(Request $request)
-{
-    $credentials = $request->only('email', 'password');
+    {
+        $credentials = $request->only('email', 'password');
 
-    if (Auth::attempt($credentials)) {
-        $user = Auth::user();
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
 
 
-        if ($user->role === 0) {
-            return redirect()->route('adminpage.dashboard.index');
-        } elseif ($user->role === 1) {
-            return redirect()->route('store.index');
+            if ($user->role === 0) {
+                return redirect()->route('adminpage.dashboard.index');
+            } elseif ($user->role === 1) {
+                return redirect()->route('store.index');
+            }
+        } else {
+            notify()->error('Email atau password salah');
+            return redirect()->back()->withInput($request->only('email'));
         }
-        return redirect()->route('home');
-    } else {
-        notify()->error('Email atau password salah');
-        return redirect()->back()->withInput($request->only('email'));
     }
-}
 
 
     public function logout()

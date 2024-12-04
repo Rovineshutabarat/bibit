@@ -27,6 +27,11 @@ class OrderController extends Controller
             'quantity' => 'required|integer|min:1'
         ]);
 
+        $user = auth()->user();
+        if ($user->address == null && $user->contact == null) {
+            notify()->error('Silahkan Lengkapi Data Anda Terlebih Dahulu');
+            return redirect()->route('main.profile');
+        }
         $product = Product::findOrFail($id);
 
         $order = Order::create([
