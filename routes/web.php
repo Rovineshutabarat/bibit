@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Store\CartController;
+use App\Http\Controllers\Store\OrderController;
 use App\Http\Controllers\Store\ProductDetailController;
 use App\Http\Controllers\Store\StoreController;
 use Illuminate\Support\Facades\Route;
@@ -73,5 +74,10 @@ Route::prefix('cart')->name('cart.')->middleware('auth')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('index');
     Route::post("/store/{id}", [CartController::class, "store"])->name("store");
     Route::delete("/delete/{id}", [CartController::class, "delete"])->name("delete");
+});
+
+Route::prefix('order')->name('order.')->middleware('auth')->group(function () {
+    Route::get('/', [OrderController::class, 'index'])->name('index');
+    Route::post('/store/{id}', [OrderController::class, 'store'])->name('store');
 });
 

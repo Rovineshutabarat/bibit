@@ -14,7 +14,7 @@
             <div class="grid grid-cols-5 gap-x-7">
                 @foreach ($categories as $category)
                     <div class="relative overflow-hidden rounded-xl cursor-pointer group h-44">
-                        <img src="{{$category->image}}"
+                        <img src="{{url('/' . $category->image)}}"
                             class="absolute inset-0 object-cover bg-center transition-all h-44 duration-300 group-hover:brightness-50">
                         </img>
 

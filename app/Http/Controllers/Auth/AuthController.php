@@ -94,7 +94,10 @@ class AuthController extends Controller
             'email' => 'email|string|max:70',
             'password' => 'string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'address' => 'nullable|string|max:255',
+            'contact' => 'nullable|string|regex:/^\+?[0-9]{10,15}$/',
         ]);
+
         if (!$validatedData) {
             notify()->error('Input Tidak Valid');
         }
