@@ -29,13 +29,13 @@
                     <td class="px-4 py-2">{{ $order['order_date'] }}</td>
                     <td class="px-4 py-2">
                         <form action="{{ route('adminpage.listorder.update', $order['id']) }}" method="POST">
-
                             @csrf
-                            @method('PUT')
                             <select name="status" class="border p-2 rounded">
-                                <option value="unpaid" {{ $order['status'] == 'unpaid' ? 'selected' : '' }}>Pending</option>
-                                <option value="paid" {{ $order['status'] == 'paid' ? 'selected' : '' }}>Sukses</option>
-                                <option value="cancelled" {{ $order['status'] == 'cancelled' ? 'selected' : '' }}>Batal</option>
+                                <option value="unpaid" {{ $order['status'] == 'unpaid' ? 'selected' : '' }}>Belum Dibayar
+                                </option>
+                                <option value="paid" {{ $order['status'] == 'paid' ? 'selected' : '' }}>Dibayar</option>
+                                <option value="cancelled" {{ $order['status'] == 'cancelled' ? 'selected' : '' }}>Batal
+                                </option>
                             </select>
                             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                                 Update

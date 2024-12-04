@@ -18,16 +18,16 @@
         </ul>
 
         <div class="flex justify-center items-center gap-x-7">
+            <a class="w-full rounded-3xl max-w-sm min-w-[230px] relative border border-slate-400">
+                @csrf
+                <input id="search" name="search"
+                    class="w-full pr-11 h-10 pl-3 py-2 rounded-3xl bg-transparent text-slate-700 text-sm focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md"
+                    placeholder="Cari produk..." onkeydown="handle_search_keydown(event)" />
+                <div class="absolute h-8 w-8 right-1 top-1 my-auto px-2 flex items-center rounded " type="submit">
+                    <img src="https://img.icons8.com/ios-filled/50/4D4D4D/search.png" alt="">
+                </div>
+            </a>
             @if (Auth::check())
-                <a class="w-full rounded-3xl max-w-sm min-w-[230px] relative border border-slate-400">
-                    @csrf
-                    <input id="search" name="search"
-                        class="w-full pr-11 h-10 pl-3 py-2 rounded-3xl bg-transparent text-slate-700 text-sm focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md"
-                        placeholder="Cari produk..." onkeydown="handle_search_keydown(event)" />
-                    <div class="absolute h-8 w-8 right-1 top-1 my-auto px-2 flex items-center rounded " type="submit">
-                        <img src="https://img.icons8.com/ios-filled/50/4D4D4D/search.png" alt="">
-                    </div>
-                </a>
                 <a href="{{route("cart.index")}}" class="relative w-full">
                     <img src="https://img.icons8.com/material-outlined/50/4D4D4D/shopping-cart.png" alt="profile.png"
                         class="size-6 object-cover">
@@ -36,7 +36,7 @@
                 </a>
                 <div class="relative w-full cursor-pointer border rounded-full border-slate-600 p-[1px]">
                     <img id="userDropdownBtn"
-                        src="{{$user->image ? $user->image : 'https://img.icons8.com/metro/50/4D4D4D/guest-male.png'}}"
+                        src="{{ $user->image ? url('/' . $user->image) : 'https://img.icons8.com/metro/50/4D4D4D/guest-male.png' }}"
                         alt="profile.png" class="size-6 object-cover rounded-full">
                     <div id="userDropdown"
                         class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 border">
