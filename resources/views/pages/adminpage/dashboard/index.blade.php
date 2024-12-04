@@ -30,6 +30,12 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById('salesChart').getContext('2d');
+    const chartData;
+
+    function setChartData(data) {
+        chartData = data;
+    }
+
     new Chart(ctx, {
         type: 'line',
         data: {
