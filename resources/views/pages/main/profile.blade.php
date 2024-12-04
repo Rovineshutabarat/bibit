@@ -9,8 +9,14 @@
 
             <h2 class="pl-3 mb-4 text-2xl font-semibold">Pengaturan</h2>
 
-            <a href="#" class="flex items-center px-3 py-2.5 font-semibold hover:border hover:rounded-full">
+            <a href="{{route('main.profile')}}" class="flex items-center px-3 py-2.5 font-semibold hover:font-bold">
                 Manajemen Akun
+            </a>
+            <a href="{{route('cart.index')}}" class="flex items-center px-3 py-2.5 font-semibold hover:font-bold">
+                Keranjang Anda
+            </a>
+            <a href="{{route('auth.logout')}}" class="flex items-center px-3 py-2.5 font-semibold hover:font-bold">
+                Logout
             </a>
         </div>
     </aside>
