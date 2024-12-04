@@ -45,38 +45,26 @@ class AuthController extends Controller
         return redirect()->route('auth.login');
     }
 
-    public function login(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'email' => 'required|email|string|max:70',
-            'password' => 'required|string|max:255',
-        ]);
+    public function login(Request $request)
+{
+    $credentials = $request->only('email', 'password');
 
-        $credentials = $request->only('email', 'password');
-
-        if (!Auth::attempt($credentials)) {
-            notify()->error('Email atau password salah');
-            return redirect()->back()
-                ->withInput($request->only('email'));
-        }
-
-        // Periksa role pengguna yang login
+    if (Auth::attempt($credentials)) {
         $user = Auth::user();
 
-        notify()->success('Berhasil Login ⚡️');
 
-        // Redirect berdasarkan role
         if ($user->role === 0) {
-            // Jika role 0, arahkan ke halaman admin
-            return redirect()->route('adminpage.product.index');
+            return redirect()->route('adminpage.dashboard.index');
         } elseif ($user->role === 1) {
-            // Jika role 1, arahkan ke halaman store
             return redirect()->route('store.index');
         }
-
-        // Jika role tidak dikenali, kembalikan ke halaman home
         return redirect()->route('home');
+    } else {
+        notify()->error('Email atau password salah');
+        return redirect()->back()->withInput($request->only('email'));
     }
+}
+
 
     public function logout()
     {
