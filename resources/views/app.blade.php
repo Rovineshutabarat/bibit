@@ -17,9 +17,9 @@
 
 <body>
     <div class="w-full">
-        @yield('app-content')
         <x-notify::notify />
         @notifyJs
+        @yield('app-content')
     </div>
     @stack('scripts')
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
