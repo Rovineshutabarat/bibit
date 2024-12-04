@@ -4,22 +4,9 @@
 
 @section('store-content')
 <div class="bg-white w-full flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931]">
-    <aside class="hidden py-4 md:w-1/3 lg:w-1/4 md:block">
-        <div class="sticky flex flex-col gap-2 p-4 text-sm border-r border-green-100 top-12">
 
-            <h2 class="pl-3 mb-4 text-2xl font-semibold">Pengaturan</h2>
+    <x-store.profile-sidebar />
 
-            <a href="{{route('main.profile')}}" class="flex items-center px-3 py-2.5 font-semibold hover:font-bold">
-                Manajemen Akun
-            </a>
-            <a href="{{route('cart.index')}}" class="flex items-center px-3 py-2.5 font-semibold hover:font-bold">
-                Keranjang Anda
-            </a>
-            <a href="{{route('auth.logout')}}" class="flex items-center px-3 py-2.5 font-semibold hover:font-bold">
-                Logout
-            </a>
-        </div>
-    </aside>
     <main class="w-full min-h-screen py-1 md:w-2/3 lg:w-3/4">
         <div class="p-2 md:p-4">
             <div class="w-full px-6 pb-8 mt-8 sm:max-w-xl sm:rounded-lg">
@@ -69,6 +56,18 @@
                             <label for="password" class="block mb-2 text-sm font-medium">
                                 Password</label>
                             <input type="password" name="password" value="{{$user->password}}" id="password"
+                                class="border text-sm rounded-lg block w-full p-2.5 ">
+                        </div>
+                        <div class="mb-2 sm:mb-6">
+                            <label for="address" class="block mb-2 text-sm font-medium">
+                                address</label>
+                            <input type="text" name="address" value="{{$user->address}}" id="address"
+                                class="border text-sm rounded-lg block w-full p-2.5 ">
+                        </div>
+                        <div class="mb-2 sm:mb-6">
+                            <label for="contact" class="block mb-2 text-sm font-medium">
+                                Kontak</label>
+                            <input type="text" name="contact" value="{{$user->contact}}" id="contact"
                                 class="border text-sm rounded-lg block w-full p-2.5 ">
                         </div>
 

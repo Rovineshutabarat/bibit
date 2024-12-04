@@ -17,6 +17,8 @@ return new class extends Migration {
             $table->string('email', 70)->unique()->nullable(false);
             $table->string('password', 255)->nullable(false);
             $table->text('image')->nullable();
+            $table->text('address')->nullable();
+            $table->string('contact', 15)->nullable();
             $table->tinyInteger('role')->default(1);
             $table->timestamps();
         });
