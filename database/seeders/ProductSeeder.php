@@ -19,6 +19,8 @@ class ProductSeeder extends Seeder
                 "image" => "images/product/1733300892_bibit_jeruk.jpg",
                 'total_view' => 0,
                 "category_id" => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 "name" => "Bibit Mangga",
@@ -28,6 +30,8 @@ class ProductSeeder extends Seeder
                 "image" => "images/product/1733301678_bibit_mangga.jpg",
                 'total_view' => 0,
                 "category_id" => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 "name" => "Bibit Alpukat",
@@ -37,6 +41,8 @@ class ProductSeeder extends Seeder
                 "image" => "images/product/1733302076_bibit_alpukat.jpg",
                 'total_view' => 0,
                 "category_id" => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 "name" => "Bibit Pepaya",
@@ -46,6 +52,8 @@ class ProductSeeder extends Seeder
                 "image" => "images/product/1733302316_bibit_pepaya.jpeg",
                 'total_view' => 0,
                 "category_id" => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 "name" => "Bibit Rambutan",
@@ -55,6 +63,8 @@ class ProductSeeder extends Seeder
                 "image" => "images/product/1733300592_bibit_rambutan.jpg",
                 'total_view' => 0,
                 "category_id" => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ];
         Product::insert($products);

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\SocialiteController;
@@ -52,6 +53,11 @@ Route::middleware(['auth', 'role:0'])->prefix("adminpage")->name("adminpage.")->
         Route::get('/', [ListorderController::class, 'index'])->name('index');
         Route::post('/update/{id}', [ListorderController::class, 'update'])->name('update');
     });
+});
+
+Route::prefix("feedback")->name("adminpage.feedback.")->group(function () {
+    Route::get('/', [FeedbackController::class, 'index'])->name('index');
+    Route::post("/store", [FeedbackController::class, "storeFeedback"])->name("store");
 });
 
 
