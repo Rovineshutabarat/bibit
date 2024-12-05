@@ -50,16 +50,17 @@
         </div>
     </div>
 
-    <form class="ml-auto space-y-4">
-        <input type='text' placeholder='Name'
+    <form action="{{route('adminpage.feedback.store')}}" method="post" class="ml-auto space-y-4">
+        @csrf
+        <input type='text' name="name" placeholder='Name'
             class="w-full rounded-md py-3 px-4 bg-gray-100 text-gray-800 text-sm outline-green-500 focus:bg-transparent" />
-        <input type='email' placeholder='Email'
+        <input type='email' name="email" placeholder='Email'
             class="w-full rounded-md py-3 px-4 bg-gray-100 text-gray-800 text-sm outline-green-500 focus:bg-transparent" />
-        <input type='text' placeholder='Subject'
+        <input type='text' name="subject" placeholder='Subject'
             class="w-full rounded-md py-3 px-4 bg-gray-100 text-gray-800 text-sm outline-green-500 focus:bg-transparent" />
-        <textarea placeholder='Message' rows="6"
+        <textarea placeholder='Message' name="message" rows="6"
             class="w-full rounded-md px-4 bg-gray-100 text-gray-800 text-sm pt-3 outline-green-500 focus:bg-transparent"></textarea>
-        <button type='button'
+        <button type='submit'
             class="text-white bg-green-500 hover:bg-blue-600 tracking-wide rounded-md text-sm px-4 py-3 w-full !mt-6">Send</button>
     </form>
 </div>
