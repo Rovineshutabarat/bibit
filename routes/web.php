@@ -89,6 +89,9 @@ Route::middleware(['auth', 'role:1'])->prefix('cart')->name('cart.')->middleware
     Route::delete("/delete/{id}", [CartController::class, "delete"])->name("delete");
 });
 
+// update quantity
+Route::post('/cart/update-quantity', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
+
 Route::prefix('order')->name('order.')->middleware('auth')->group(function () {
     Route::get('/', [OrderController::class, 'index'])->name('index');
     Route::post('/store/{id}', [OrderController::class, 'store'])->name('store');

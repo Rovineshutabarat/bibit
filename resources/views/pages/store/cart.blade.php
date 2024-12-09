@@ -136,4 +136,37 @@
         </div>
     </div>
 </div>
+
+{{-- update quantity --}}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.quantity-button').forEach(button => {
+            button.addEventListener('click', function () {
+                const productId = this.dataset.productId;
+                const quantity = this.dataset.quantity;
+
+                fetch('{{ route('cart.updateQuantity') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        product_id: productId,
+                        quantity: quantity
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.querySelector('#total').innerText = data.total;
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+
 @endsection
