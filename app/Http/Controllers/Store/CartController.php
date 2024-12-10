@@ -70,4 +70,27 @@ class CartController extends Controller
 
         return redirect()->route('cart.index');
     }
+// update quantity
+    public function updateQuantity(Request $request)
+    {
+        $cart = Cart::where("user_id", auth()->user()->id)->first();
+        $cart_product = CartProduct::where("cart_id", $cart->id)
+            ->where("product_id", $request->product_id)
+            ->first();
+
+        if ($cart_product) {
+            $cart_product->update([
+                "quantity" => $request->quantity,
+            ]);
+        }
+
+        $total = $cart->cartProducts->sum(function ($cart_product) {
+            return $cart_product->product->price * $cart_product->quantity;
+        });
+
+        return response()->json([
+            'success' => true,
+            'total' => $total,
+        ]);
+    }
 }
