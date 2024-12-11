@@ -15,13 +15,13 @@ class OrderController extends Controller
     public function index(): View
     {
         $orders = Order::where('user_id', auth()->user()->id)
-            ->with(['orderDetails.product', 'user'])
             ->get();
 
         return view('pages.store.order', [
             'orders' => $orders
         ]);
     }
+
     public function store(Request $request, $id)
     {
         $request->validate([

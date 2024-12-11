@@ -48,6 +48,20 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{{ route('order.index') }}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    Pesanan Anda
+                                </a>
+                            </li>
+                            @if (auth()->user()->role == 0)
+                                <li>
+                                    <a href="{{ route('adminpage.dashboard.index') }}"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        Halaman Admin
+                                    </a>
+                                </li>
+                            @endif
+                            <li>
                                 <a href="{{ route('auth.logout') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                     Logout

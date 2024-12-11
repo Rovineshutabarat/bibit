@@ -6,6 +6,12 @@
         <a href="{{route('main.profile')}}" class="flex items-center px-3 py-2.5 font-semibold hover:font-bold">
             Manajemen Akun
         </a>
+        @if (auth()->user()->role == 0)
+            <a href="{{route('adminpage.dashboard.index')}}"
+                class="flex items-center px-3 py-2.5 font-semibold hover:font-bold">
+                Halaman Admin
+            </a>
+        @endif
         <a href="{{route('cart.index')}}" class="flex items-center px-3 py-2.5 font-semibold hover:font-bold">
             Keranjang Anda
         </a>
