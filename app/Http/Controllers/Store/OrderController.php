@@ -98,4 +98,16 @@ class OrderController extends Controller
         return redirect()->route('order.index');
     }
 
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'status' => 'required|in:unpaid,paid,canceled,shipping,complete'
+        ]);
+
+        Order::where('id', $id)->update([
+            'status' => $validatedData['status'],
+        ]);
+
+        return redirect()->route('order.index')->with('success', 'Status pesanan berhasil diperbarui.');
+    }
 }

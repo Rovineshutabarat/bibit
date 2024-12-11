@@ -50,7 +50,7 @@
         </div>
     </div>
 
-    <form action="{{route('adminpage.feedback.store')}}" method="post" class="ml-auto space-y-4">
+    <form action="{{route('main.store.feedback')}}" method="post" class="ml-auto space-y-4">
         @csrf
         <input type='text' name="name" placeholder='Name'
             class="w-full rounded-md py-3 px-4 bg-gray-100 text-gray-800 text-sm outline-green-500 focus:bg-transparent" />
