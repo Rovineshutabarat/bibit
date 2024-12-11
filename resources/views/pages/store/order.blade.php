@@ -130,32 +130,44 @@
                         <div class="flex justify-end mt-6">
                             <div class="flex items-center space-x-3">
                                 @if ($order->status == "unpaid")
-                                    <button
-                                        class="px-4 py-2 text-sm text-white bg-red-500 rounded-md hover:bg-red-600 transition-colors">
-                                        Batalkan
-                                    </button>
+                                    <form action="{{route('order.update', ['id' => $order->id])}}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="status" value="canceled">
+                                        <button type="submit"
+                                            class="px-4 py-2 text-sm text-white bg-red-500 rounded-md hover:bg-red-600 transition-colors">
+                                            Batalkan
+                                        </button>
+                                    </form>
                                     <button class="px-4 py-2 text-sm text-white bg-gray-400 rounded-md cursor-not-allowed"
                                         disabled>
                                         Pesanan Diterima
                                     </button>
                                 @elseif ($order->status == "shipping")
-                                    <button
-                                        class="px-4 py-2 text-sm text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors">
+                                    <button class="px-4 py-2 text-sm text-white bg-gray-400 rounded-md cursor-not-allowed"
+                                        disabled>
                                         Batalkan
                                     </button>
-                                    <button
-                                        class="px-4 py-2 text-sm text-white bg-green-600 rounded-md hover:bg-green-700 transition-colors">
-                                        Pesanan Diterima
-                                    </button>
+                                    <form action="{{route('order.update', ['id' => $order->id])}}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="status" value="complete">
+                                        <button
+                                            class="px-4 py-2 text-sm text-white bg-green-600 rounded-md hover:bg-green-700 transition-colors">
+                                            Pesanan Diterima
+                                        </button>
+                                    </form>
                                 @elseif ($order->status == "paid")
                                     <button class="px-4 py-2 text-sm text-white bg-gray-400 rounded-md cursor-not-allowed"
                                         disabled>
                                         Batalkan
                                     </button>
-                                    <button
-                                        class="px-4 py-2 text-sm text-white bg-green-500 rounded-md hover:bg-green-600 transition-colors">
-                                        Pesanan Diterima
-                                    </button>
+                                    <form action="{{route('order.update', ['id' => $order->id])}}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="status" value="complete">
+                                        <button
+                                            class="px-4 py-2 text-sm text-white bg-green-600 rounded-md hover:bg-green-700 transition-colors">
+                                            Pesanan Diterima
+                                        </button>
+                                    </form>
                                 @elseif ($order->status == "canceled")
                                     <button class="px-4 py-2 text-sm text-white bg-gray-400 rounded-md cursor-not-allowed"
                                         disabled>

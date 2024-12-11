@@ -94,5 +94,6 @@ Route::prefix('order')->name('order.')->middleware('auth')->group(function () {
     Route::get('/', [OrderController::class, 'index'])->name('index');
     Route::post('/store/{id}', [OrderController::class, 'store'])->name('store');
     Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+    Route::post('/update{id}', [OrderController::class, 'update'])->name('update');
 });
 
