@@ -32,7 +32,7 @@
     </section>
 
     <!-- Product Section -->
-    <section class="w-full bg-gray-50 py-16">
+    <section class="w-full bg-gray-50 py-12">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex items-center justify-between mb-8">
                 <h2 class="text-2xl font-bold text-gray-800">Produk Terbaru</h2>

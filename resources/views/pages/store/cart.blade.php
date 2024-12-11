@@ -10,11 +10,17 @@
             @foreach ($cart_products as $cart_product)
                 <div class="grid grid-cols-3 items-start gap-4">
                     <div class="col-span-2 flex items-start gap-4">
-                        <a href="{{url('/' . $cart_product->product->image)}}" target="_blank"
-                            class="w-28 h-28 max-sm:w-24 max-sm:h-24 cursor-pointer shrink-0 bg-gray-100 p-2 rounded-md">
-                            <img src='{{url('/' . $cart_product->product->image)}}'
-                                class="w-full h-full rounded-md object-cover" />
-                        </a>
+                        <div class="flex items-center gap-x-7">
+                            <input type="checkbox" class="size-5 cursor-pointer item-checkbox"
+                                data-price="{{ $cart_product->product->price }}"
+                                data-quantity="{{ $cart_product->quantity }}" data-id="{{$cart_product->product->id}}" />
+
+                            <a href="{{url('/' . $cart_product->product->image)}}" target="_blank"
+                                class="w-28 h-28 max-sm:w-24 max-sm:h-24 cursor-pointer shrink-0 bg-gray-100 p-2 rounded-md">
+                                <img src='{{url('/' . $cart_product->product->image)}}'
+                                    class="w-full h-full rounded-md object-cover" />
+                            </a>
+                        </div>
 
                         <div class="flex flex-col">
                             <h3 class="text-base font-bold text-gray-800">{{$cart_product->product->name}}</h3>
@@ -68,37 +74,21 @@
             <ul class="text-gray-800 mt-6 space-y-3">
                 <!-- Subtotal -->
                 <li class="flex flex-wrap gap-4 text-sm">
-                    Subtotal
-                    <span class="ml-auto font-bold">Rp. {{ number_format($total, 0, ',', '.') }}</span>
+                    Subtotal Produk
+                    <span id="subtotal" class="ml-auto font-bold">Rp.0</span>
                 </li>
 
-                <!-- Shipping -->
-                @php
-                    $shipping = 20000; 
-                @endphp
-                <li class="flex flex-wrap gap-4 text-sm">
-                    Shipping
-                    <span class="ml-auto font-bold">Rp. {{ number_format($shipping, 0, ',', '.') }}</span>
-                </li>
 
-                <!-- Tax -->
-                @php
-                    $tax = $total * 0.1; 
-                @endphp
                 <li class="flex flex-wrap gap-4 text-sm">
-                    Tax
-                    <span class="ml-auto font-bold">Rp. {{ number_format($tax, 0, ',', '.') }}</span>
+                    Pengiriman
+                    <span class="ml-auto font-bold">Rp. {{ $shipping }}</span>
                 </li>
 
                 <hr class="border-gray-300" />
 
-                <!-- Total -->
-                @php
-                    $grand_total = $total + $shipping + $tax;
-                @endphp
                 <li class="flex flex-wrap gap-4 text-sm font-bold">
                     Total
-                    <span class="ml-auto">Rp. {{ number_format($grand_total, 0, ',', '.') }}</span>
+                    <span id="total" class="ml-auto">Rp.20.000</span>
                 </li>
             </ul>
 
@@ -126,8 +116,12 @@
                 </div>
             </div>
             <div class="mt-6 space-y-3">
-                <button type="button"
-                    class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-gray-800 hover:bg-gray-900 text-white rounded-md">Checkout</button>
+                <form action="{{route('order.checkout')}}" method="post">
+                    @csrf
+                    <input type="hidden" id="selected-items" name="selected-items" class="border border-black">
+                    <button type="submit"
+                        class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-gray-800 hover:bg-gray-900 text-white rounded-md">Checkout</button>
+                </form>
                 <button type="button"
                     class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-transparent text-gray-800 border border-gray-300 rounded-md">
                     <a href="{{ route('store.index') }}">Continue Shopping</a>
@@ -137,36 +131,74 @@
     </div>
 </div>
 
-{{-- update quantity --}}
+@push('scripts')
+    <script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.quantity-button').forEach(button => {
-            button.addEventListener('click', function () {
-                const productId = this.dataset.productId;
-                const quantity = this.dataset.quantity;
+        const sub_total_element = document.getElementById("subtotal");
+        const total_element = document.getElementById("total");
 
-                fetch('{{ route('cart.updateQuantity') }}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: JSON.stringify({
-                        product_id: productId,
-                        quantity: quantity
+        function setSelectedItem() {
+            let selected_items = []
+            document.querySelectorAll('.item-checkbox:checked').forEach(checkbox => {
+                selected_items.push({
+                    product_id: parseInt(checkbox.dataset.id),
+                    quantity: parseInt(checkbox.dataset.quantity)
+                });
+                document.getElementById('selected-items').value = JSON.stringify(selected_items);
+            });
+        }
+
+        function calculateSubtotal() {
+            let subtotal = 0;
+            let total = 0;
+
+            document.querySelectorAll('.item-checkbox:checked').forEach(checkbox => {
+                const price = parseFloat(checkbox.dataset.price);
+                const quantity = parseInt(checkbox.dataset.quantity);
+                subtotal += price * quantity;
+            });
+            total += subtotal + 20000
+
+            sub_total_element.innerHTML = `Rp.${subtotal}`;
+            total_element.innerHTML = `Rp.${total}`;
+        }
+
+        document.querySelectorAll('.item-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', calculateSubtotal);
+        });
+
+        document.querySelectorAll('.item-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', setSelectedItem);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.quantity-button').forEach(button => {
+                button.addEventListener('click', function () {
+                    const productId = this.dataset.productId;
+                    const quantity = this.dataset.quantity;
+
+                    fetch('{{ route('cart.update.quantity') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            product_id: productId,
+                            quantity: quantity
+                        })
                     })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        document.querySelector('#total').innerText = data.total;
-                    }
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                document.querySelector('#total').innerText = data.total;
+                            }
+                        });
                 });
             });
         });
-    });
-</script>
+    </script>
+@endpush
 
 
 @endsection

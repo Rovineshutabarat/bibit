@@ -16,19 +16,11 @@
 
             <li>
                 <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100
-                {{ request()->routeIs('') ? 'bg-gray-200' : '' }}" href="{{ route('adminpage.listorder.index') }}">
-                    <img src="https://img.icons8.com/ios-glyphs/30/fast-cart.png" alt="dashboard.png" class="size-5">
-                    Order
-                </a>
-            </li>
-
-            <li>
-                <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100
                 {{ request()->routeIs('adminpage.product*') ? 'bg-gray-200' : '' }}"
                     href="{{ route('adminpage.product.index') }}">
                     <img src="https://img.icons8.com/material/24/4D4D4D/product--v1.png" alt="product.png"
                         class="size-5">
-                    Product
+                    Produk
                 </a>
             </li>
 
@@ -38,7 +30,15 @@
                     href="{{ route('adminpage.category.index') }}">
                     <img src="https://img.icons8.com/ios-filled/50/4D4D4D/categorize.png" alt="category.png"
                         class="size-5">
-                    Category
+                    Kategori
+                </a>
+            </li>
+
+            <li>
+                <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100
+                {{ request()->routeIs('') ? 'bg-gray-200' : '' }}" href="{{ route('adminpage.listorder.index') }}">
+                    <img src="https://img.icons8.com/ios-glyphs/30/fast-cart.png" alt="dashboard.png" class="size-5">
+                    Pesanan
                 </a>
             </li>
 
@@ -56,7 +56,7 @@
                 <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100
                 {{ request()->routeIs('auth.logout') ? 'bg-gray-200' : '' }}" href="{{ route('auth.logout') }}">
                     <img src="https://img.icons8.com/metro/50/737373/shutdown.png" alt="logout.png" class="size-5">
-                    Logout
+                    Keluar
                 </a>
             </li>
 

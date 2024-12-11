@@ -47,10 +47,10 @@
                     <p class="block text-sm font-normal leading-none">Email</p>
                 </th>
                 <th class="p-2 border-b border-slate-300">
-                    <p class="block text-sm font-normal leading-none">Subject</p>
+                    <p class="block text-sm font-normal leading-none">Subjek</p>
                 </th>
                 <th class="p-2 border-b border-slate-300">
-                    <p class="block text-sm font-normal leading-none">Message</p>
+                    <p class="block text-sm font-normal leading-none">Pesan</p>
                 </th>
 
             </tr>

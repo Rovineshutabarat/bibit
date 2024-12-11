@@ -17,11 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::name("main.")->group(function () {
     Route::get("/", [MainController::class, 'homepage'])->name("homepage");
-    Route::get("/profile", [MainController::class, 'profile'])->name("profile")->middleware("auth");
-    Route::get("/contact-us", [MainController::class, 'ContactUs'])->name("contact.us");
     Route::get("/about-us", [MainController::class, 'AboutUs'])->name("about.us");
+    // Profile Page
+    Route::get("/profile", [MainController::class, 'profile'])->name("profile")->middleware("auth");
     Route::post("/update/profile/{id}", [AuthController::class, "update"])->name("update.profile")->middleware('auth');
     Route::delete("/delete/profile/{id}", [AuthController::class, "deleteProfilePicture"])->name("delete.profile.picture")->middleware('auth');
+    // Contact us Page
+    Route::get("/contact-us", [MainController::class, 'ContactUs'])->name("contact.us");
+    Route::post("/store/feedback", [FeedbackController::class, "storeFeedback"])->name("store.feedback");
 });
 
 
@@ -53,19 +56,16 @@ Route::middleware(['auth', 'role:0'])->prefix("adminpage")->name("adminpage.")->
         Route::get('/', [ListorderController::class, 'index'])->name('index');
         Route::post('/update/{id}', [ListorderController::class, 'update'])->name('update');
     });
-});
 
-Route::prefix("feedback")->name("adminpage.feedback.")->group(function () {
-    Route::get('/', [FeedbackController::class, 'index'])->name('index');
-    Route::post("/store", [FeedbackController::class, "storeFeedback"])->name("store");
+    Route::prefix("feedback")->name("feedback.")->group(function () {
+        Route::get('/', [FeedbackController::class, 'index'])->name('index');
+    });
 });
 
 
 Route::prefix("auth")->name("auth.")->middleware('guest')->group(function () {
-    // view
     Route::get('/login', [AuthController::class, 'loginView'])->name('login');
     Route::get('/register', [AuthController::class, 'registerView'])->name('register');
-    // operation
     Route::post('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/login', [AuthController::class, 'login'])->name('login');
 });
@@ -87,13 +87,12 @@ Route::middleware(['auth', 'role:1'])->prefix('cart')->name('cart.')->middleware
     Route::get('/', [CartController::class, 'index'])->name('index');
     Route::post("/store/{id}", [CartController::class, "store"])->name("store");
     Route::delete("/delete/{id}", [CartController::class, "delete"])->name("delete");
+    Route::post('/update-quantity', [CartController::class, 'updateQuantity'])->name('update.quantity');
 });
-
-// update quantity
-Route::post('/cart/update-quantity', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
 
 Route::prefix('order')->name('order.')->middleware('auth')->group(function () {
     Route::get('/', [OrderController::class, 'index'])->name('index');
     Route::post('/store/{id}', [OrderController::class, 'store'])->name('store');
+    Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 });
 

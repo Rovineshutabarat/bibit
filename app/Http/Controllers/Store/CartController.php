@@ -17,13 +17,15 @@ class CartController extends Controller
 
         $cart_products = CartProduct::where("cart_id", $cart->id)->get();
 
-        $total = $cart_products->sum(function ($cart_product) {
+        $subtotal = $cart_products->sum(function ($cart_product) {
             return $cart_product->product->price * $cart_product->quantity;
         });
 
         return view("pages.store.cart", [
             "cart_products" => $cart_products,
-            "total" => $total,
+            "subtotal" => $subtotal,
+            'shipping' => 20000,
+            'total' => $subtotal + 20000
         ]);
     }
 
@@ -70,7 +72,7 @@ class CartController extends Controller
 
         return redirect()->route('cart.index');
     }
-// update quantity
+    // update quantity
     public function updateQuantity(Request $request)
     {
         $cart = Cart::where("user_id", auth()->user()->id)->first();
