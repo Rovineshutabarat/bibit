@@ -14,7 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('user');
             $table->double('total_amount', 8, 2)->nullable(false);
-            $table->enum('status', ['unpaid', 'paid', 'canceled'])->default('unpaid');
+            $table->enum('status', ['unpaid', 'paid', 'canceled', 'shipping', 'complete'])->default('unpaid');
+            $table->enum('payment_method', ['cash', 'transfer', 'qris'])->default('cash');
             $table->date('timestamps')->nullable();
             $table->timestamps();
         });

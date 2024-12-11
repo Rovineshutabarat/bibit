@@ -34,7 +34,7 @@ class ListorderController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'status' => 'required|in:unpaid,paid,cancelled'
+            'status' => 'required|in:unpaid,paid,canceled,shipping,complete'
         ]);
 
         Order::where('id', $id)->update([

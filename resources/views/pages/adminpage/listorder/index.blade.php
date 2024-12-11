@@ -34,7 +34,11 @@
                                 <option value="unpaid" {{ $order['status'] == 'unpaid' ? 'selected' : '' }}>Belum Dibayar
                                 </option>
                                 <option value="paid" {{ $order['status'] == 'paid' ? 'selected' : '' }}>Dibayar</option>
-                                <option value="cancelled" {{ $order['status'] == 'cancelled' ? 'selected' : '' }}>Batal
+                                <option value="shipping" {{ $order['status'] == 'shipping' ? 'selected' : '' }}>Dikirim
+                                </option>
+                                <option value="complete" {{ $order['status'] == 'complete' ? 'selected' : '' }}>Selesai
+                                </option>
+                                <option value="canceled" {{ $order['status'] == 'canceled' ? 'selected' : '' }}>Dibatalkan
                                 </option>
                             </select>
                             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
