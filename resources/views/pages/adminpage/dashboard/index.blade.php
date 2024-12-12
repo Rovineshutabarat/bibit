@@ -27,35 +27,34 @@
     </div>
 </div>
 
+@push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const ctx = document.getElementById('salesChart').getContext('2d');
-    const chartData;
-
-    function setChartData(data) {
-        chartData = data;
-    }
-
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: {!! json_encode($chartLabels) !!},
-            datasets: [{
-                label: 'Total Penjualan (Rp)',
-                data: {!! json_encode($chartData) !!},
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                fill: true,
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {!! json_encode($chartLabels) !!},
+                datasets: [{
+                    label: 'Total Penjualan (Rp)',
+                    data: {!! json_encode($chartData) !!},
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
+        });
     });
 </script>
+@endpush
 @endsection
