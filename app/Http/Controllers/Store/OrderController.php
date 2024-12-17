@@ -15,6 +15,7 @@ class OrderController extends Controller
     public function index(): View
     {
         $orders = Order::where('user_id', auth()->user()->id)
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return view('pages.store.order', [
